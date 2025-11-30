@@ -1,0 +1,101 @@
+<div class="product-edit-container" [ngClass]="isEdit ? 'edit-mode' : 'create-mode'">
+  <h1 align="center" class="display-4 mb-4">
+    {{ isEdit ? 'Edit Product' : 'Create Product' }}
+  </h1>
+
+  <form #form="ngForm" (ngSubmit)="onSubmit()" style="width: 60%; margin: 0 auto;">
+    <!-- ID -->
+    <div class="form-group">
+      <label for="productId">Code</label>
+      <input [readOnly]="isEdit" [disabled]="isEdit" [(ngModel)]="product.productId" type="text"
+             class="form-control form-control-lg" id="productId" name="productId" required>
+    </div>
+
+    <!-- Photo -->
+    <div class="form-group">
+      <label>Photo Link</label>
+      <input [(ngModel)]="product.productIcon" type="text" class="form-control form-control-lg"
+             id="productIcon" name="productIcon" placeholder="Photo URL">
+      <div *ngIf="product.productIcon" class="preview mt-3 text-center">
+        <img [src]="product.productIcon" alt="Preview" class="img-preview">
+      </div>
+    </div>
+
+    <!-- Name -->
+    <div class="form-group">
+      <label>Name</label>
+      <input [(ngModel)]="product.productName" type="text" class="form-control form-control-lg"
+             id="productName" name="productName" placeholder="Product Name" required>
+    </div>
+
+    <!-- Category -->
+   <select class="custom-select custom-select-lg"
+        id="categoryType"
+        name="categoryType"
+        [(ngModel)]="product.categoryType"
+        required>
+
+  <option *ngFor="let c of categories" [ngValue]="c.categoryType">
+    {{ c.categoryName }}
+  </option>
+
+</select>
+
+
+    <!-- Description -->
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control form-control-lg text-left"
+                id="productDescription"
+                name="productDescription"
+                placeholder="Product Description"
+                [(ngModel)]="product.productDescription"></textarea>
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+      <label for="productPrice">Price</label>
+      <input class="form-control form-control-lg"
+             type="number"
+             id="productPrice"
+             name="productPrice"
+             [(ngModel)]="product.productPrice"
+             required>
+    </div>
+
+    <!-- Stock -->
+    <div class="form-group">
+      <label for="productStock">Stock</label>
+      <input class="form-control form-control-lg"
+             type="number"
+             id="productStock"
+             name="productStock"
+             min="0"
+             [(ngModel)]="product.productStock"
+             required>
+    </div>
+
+    <!-- Status -->
+    <div class="form-group">
+      <label for="productStatus">Status</label>
+      <select class="custom-select custom-select-lg"
+              id="productStatus"
+              name="productStatus"
+              [(ngModel)]="product.productStatus"
+              required>
+        <option [ngValue]="0">Available</option>
+        <option [ngValue]="1">Unavailable</option>
+      </select>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <button type="submit"
+              [disabled]="!form.form.valid"
+              class="btn btn-lg btn-block"
+              [ngClass]="isEdit ? 'btn-warning' : 'btn-success'">
+        {{ isEdit ? 'Update Product' : 'Create Product' }}
+      </button>
+    </div>
+  </form>
+</div>

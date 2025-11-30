@@ -1,0 +1,41 @@
+.orders-container {
+  background: linear-gradient(135deg, #fff9c4, #ffecb3);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.orders-title {
+  font-weight: 800;
+  font-size: 42px;
+  color: #222;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.table thead {
+  background: #3e4034;
+  color: #fff;
+}
+
+.table tbody tr:hover {
+  background-color: #fff3cd;
+  transition: 0.2s ease;
+}
+
+.badge {
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+  padding: 5px 10px;
+}
+
+.table-responsive {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+}

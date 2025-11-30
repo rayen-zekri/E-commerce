@@ -1,0 +1,123 @@
+<!-- Bouton Ajouter -->
+<div class="text-end mb-3">
+  <button class="btn btn-warning btn-lg" (click)="toggleAddForm()">
+    <i class="fas fa-plus"></i> {{ showAddForm ? 'Close Form' : 'Add New Product' }}
+  </button>
+</div>
+
+<!-- Formulaire de création -->
+<div *ngIf="showAddForm" class="add-form-container mb-5 p-4 rounded shadow-sm bg-light">
+  <h3 class="text-center mb-3">Create a New Product</h3>
+
+  <form #addForm="ngForm" (ngSubmit)="createProduct()">
+    <!-- Champs bindés à newProduct -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label>Code</label>
+        <input [(ngModel)]="newProduct.productId" name="productId" class="form-control"  />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Photo URL</label>
+        <input [(ngModel)]="newProduct.productIcon" name="productIcon" class="form-control" />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Name</label>
+        <input [(ngModel)]="newProduct.productName" name="productName" class="form-control" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Category</label>
+       
+                <select class="custom-select custom-select-lg"
+        id="categoryType"
+        name="categoryType"
+        class="form-select"
+        [(ngModel)]="newProduct.categoryType"
+        required>
+
+  <option *ngFor="let c of categories" [ngValue]="c.categoryType">
+    {{ c.categoryName }}
+  </option>
+
+</select>
+      </div>
+      <div class="col-12 mb-3">
+        <label>Description</label>
+        <textarea [(ngModel)]="newProduct.productDescription" name="productDescription"
+                  class="form-control" rows="2"></textarea>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Price</label>
+        <input [(ngModel)]="newProduct.productPrice" name="productPrice" type="number"
+               class="form-control" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Stock</label>
+        <input [(ngModel)]="newProduct.productStock" name="productStock" type="number"
+               class="form-control" required />
+      </div>
+      <div class="col-md-6 mb-3">
+        <label>Status</label>
+        <select [(ngModel)]="newProduct.productStatus" name="productStatus" class="form-select" required>
+          <option [ngValue]="0">Available</option>
+          <option [ngValue]="1">Unavailable</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="text-center mt-3">
+      <button [disabled]="!addForm.form.valid" class="btn btn-primary btn-lg">
+        Create Product
+      </button>
+    </div>
+  </form>
+</div>
+
+  <!-- Tableau des produits -->
+<div class="d-flex justify-content-end mb-3">
+  <input type="text"
+         class="form-control w-25"
+         placeholder="Search product..."
+         [(ngModel)]="searchText"
+         (input)="filterProducts()"/>
+</div>
+
+  <div class="table-responsive shadow rounded">
+    <table class="table table-hover table-striped text-center align-middle">
+      <thead class="table-warning">
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let productInfo of page?.content">
+          <td><img height="80" [src]="productInfo.productIcon" alt="{{productInfo.productName}}" class="rounded shadow-sm"></td>
+          <td>{{productInfo.productName}}</td>
+<td>{{ getCategoryName(productInfo.categoryType) }}</td>
+          <td>{{productInfo.productDescription}}</td>
+          <td>{{productInfo.productPrice | currency}}</td>
+          <td>{{productInfo.productStock}}</td>
+          <td>
+            <span [ngClass]="productInfo.productStatus === 0 ? 'badge bg-success' : 'badge bg-secondary'">
+              {{ProductStatus[productInfo.productStatus]}}
+            </span>
+          </td>
+          <td>
+            <a routerLink="/seller/product/{{productInfo.productId}}/edit" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+            <button class="btn btn-sm btn-outline-danger" (click)="remove(page.content, productInfo.productId)">
+              Remove
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-pagination [currentPage]="page"></app-pagination>

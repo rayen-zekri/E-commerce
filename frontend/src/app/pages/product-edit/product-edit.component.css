@@ -1,0 +1,132 @@
+.product-detail-container {
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  background: linear-gradient(145deg, #fffde7, #fff8e1);
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet flottant doux */
+.product-detail-container::before {
+  content: "";
+  position: absolute;
+  top: -80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 235, 59, 0.4), transparent 70%);
+  z-index: 0;
+  filter: blur(40px);
+}
+.product-detail-container::after {
+  content: "";
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 193, 7, 0.35), transparent 70%);
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.product-card {
+  background: #ffffffcc;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(8px);
+}
+
+/* Image produit */
+.product-image {
+  width: 80%;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.product-image:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Prix mis en valeur */
+.price-badge {
+  background: linear-gradient(90deg, #ffc107, #ffca28);
+  color: #222;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(255, 193, 7, 0.4);
+}
+
+/* Sous-total */
+.subtotal-text {
+  color: #2e7d32;
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 0 0 4px rgba(46, 125, 50, 0.3);
+}
+
+/* Boutons */
+.btn-success {
+  background-color: #43a047;
+  border: none;
+  transition: 0.3s;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(67, 160, 71, 0.4);
+}
+
+.btn-success:hover {
+  background-color: #2e7d32;
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(46, 125, 50, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .product-detail-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .product-image {
+    width: 100%;
+    max-height: 300px;
+  }
+}
+.product-edit-container {
+  background: linear-gradient(145deg, #fffde7, #fff8e1);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  max-width: 900px;
+  margin: 40px auto;
+  transition: all 0.4s ease;
+}
+
+.edit-mode {
+  border-left: 10px solid #ffc107;
+}
+
+.create-mode {
+  border-left: 10px solid #4caf50;
+}
+
+.preview img.img-preview {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.preview img.img-preview:hover {
+  transform: scale(1.05);
+}

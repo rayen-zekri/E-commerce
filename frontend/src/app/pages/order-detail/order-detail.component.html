@@ -1,0 +1,54 @@
+<div class="order-detail-container shadow-lg p-4 rounded-4">
+  <h1 class="order-detail-title text-center mb-5">
+    <i class="bi bi-receipt"></i> Order Detail
+  </h1>
+
+  <div class="table-responsive rounded-3 overflow-hidden">
+    <table class="table table-hover align-middle text-center mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th>Photo</th>
+          <th>Product</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of (order$ | async)?.products">
+          <td>
+            <a routerLink="/seller/product/{{item.productId}}/edit">
+              <img [src]="item.productIcon" [alt]="item.productName" class="product-img shadow-sm" />
+            </a>
+          </td>
+          <td>
+            <a
+              routerLink="/seller/product/{{item.productId}}/edit"
+              class="text-decoration-none fw-bold text-dark"
+            >
+              {{ item.productName }}
+            </a>
+          </td>
+          <td class="text-muted">{{ item.productDescription }}</td>
+          <td>
+            <span class="badge bg-success fs-6">{{ item.productPrice | currency }}</span>
+          </td>
+          <td>{{ item.count }}</td>
+          <td class="fw-bold text-primary">
+            {{ item.productPrice * item.count | currency }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="total-section mt-4 text-end">
+    <h4 class="fw-bold">
+      <i class="bi bi-cash-coin"></i> Total:
+      <span class="text-success">
+        {{ (order$ | async)?.orderAmount | currency }}
+      </span>
+    </h4>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+/* Container spacing */
+.pagination {
+  gap: 6px; /* espace entre boutons */
+}
+
+/* Liens pagination (Bootstrap override propre) */
+.pagination .page-link {
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 500;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Style normal */
+.pagination .page-item .page-link {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+/* Hover */
+.pagination .page-item:not(.disabled) .page-link:hover {
+  background-color: #ffe68a;
+  border-color: #ffc107;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+/* Active page */
+.pagination .page-item.active .page-link {
+  background-color: #ffc107 !important;
+  border-color: #ffb300 !important;
+  color: black !important;
+  font-weight: 600;
+  box-shadow: 0 0 6px rgba(255, 193, 7, 0.6);
+}
+
+/* Disabled */
+.pagination .page-item.disabled .page-link {
+  background-color: #f0f0f0;
+  border-color: #ddd;
+  color: #aaa;
+  cursor: not-allowed;
+}

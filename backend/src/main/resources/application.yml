@@ -1,0 +1,41 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 12345678
+    url: jdbc:postgresql://localhost:5432/E_commerce
+    platform: postgres
+    initialization-mode: always
+    continue-on-error: true
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+
+  queries:
+    users-query: select email, password, active from users where email=?
+    roles-query: select email, role from users where email=?
+
+server:
+  port: 8081
+  servlet:
+    contextPath: /api
+
+jwtSecret: me.zhulin
+jwtExpiration: 86400
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui  # <-- URL sera http://localhost:8081/swagger-ui/index.html
+  info:
+    title: RodBalek API
+    description: API Backend du projet RodBalek
+    version: 1.0.0

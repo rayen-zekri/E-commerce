@@ -1,0 +1,73 @@
+<div class="orders-container">
+  <h1 class="orders-title text-center mb-5">
+    <i class="bi bi-box-seam"></i> Orders
+  </h1>
+
+  <div class="table-responsive shadow-lg rounded-4 overflow-hidden">
+    <table class="table table-hover align-middle text-center mb-0">
+      <thead class="table-dark">
+        <tr>
+          <th>Order #</th>
+          <th>Customer</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Address</th>
+          <th>Total</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let order of page?.content" class="order-row">
+          <td><strong>{{ order.orderId }}</strong></td>
+          <td>{{ order.buyerName }}</td>
+          <td>{{ order.buyerEmail }}</td>
+          <td>{{ order.buyerPhone }}</td>
+          <td>{{ order.buyerAddress }}</td>
+          <td><span class="badge bg-success">{{ order.orderAmount | currency }}</span></td>
+          <td>{{ order.createTime | date:'mediumDate' }}</td>
+          <td>
+            <span
+              [ngClass]="{
+                'badge bg-warning': order.orderStatus == 0,
+                'badge bg-success': order.orderStatus == 1,
+                'badge bg-danger': order.orderStatus == 2
+              }">
+              {{ OrderStatus[order.orderStatus] }}
+            </span>
+          </td>
+
+          <td>
+            <a
+              *ngIf="!(currentUser.role == Role.Customer && currentUser.name == order.buyerEmail)"
+              class="btn btn-outline-primary btn-sm mb-1"
+              routerLink="/order/{{ order.orderId }}"
+            >
+              <i class="bi bi-eye"></i> View
+            </a>
+
+            <button
+              *ngIf="order.orderStatus == 0"
+              class="btn btn-outline-danger btn-sm mb-1"
+              (click)="cancel(order)"
+            >
+              <i class="bi bi-x-circle"></i> Cancel
+            </button>
+
+            <button
+              *ngIf="currentUser.role != Role.Customer && order.orderStatus == 0"
+              class="btn btn-outline-success btn-sm"
+              (click)="finish(order)"
+            >
+              <i class="bi bi-check2-circle"></i> Finish
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <app-pagination [currentPage]="page"></app-pagination>
+</div>

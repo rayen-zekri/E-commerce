@@ -1,0 +1,72 @@
+<div class="cart-container">
+  <h1 class="cart-title">🛒 My Cart</h1>
+
+  <table class="table table-hover cart-table text-center align-middle">
+      <thead class="cart-header">
+      <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let productInOrder of productInOrders" class="cart-row">
+          <td>
+              <a routerLink="/product/{{productInOrder.productId}}">
+                <img src="{{productInOrder.productIcon}}" class="cart-img" alt="{{productInOrder.productName}}">
+              </a>
+          </td>
+
+          <td>
+            <a routerLink="/product/{{productInOrder.productId}}" class="cart-product-name">
+              {{productInOrder.productName}}
+            </a>
+          </td>
+
+          <td class="cart-price">{{productInOrder.productPrice | currency}}</td>
+
+          <td>
+              <div class="qty-box">
+                <button class="qty-btn" (click)="minusOne(productInOrder)"><i class="fa fa-minus"></i></button>
+
+                <input min="1"
+                       id="{{productInOrder.productId}}"
+                       [max]=productInOrder.productStock
+                       [(ngModel)]="productInOrder.count"
+                       (change)="onChange(productInOrder)"
+                       type="number"
+                       class="qty-input">
+
+                <button class="qty-btn" (click)="addOne(productInOrder)"><i class="fa fa-plus"></i></button>
+              </div>
+          </td>
+
+          <td class="cart-price">{{productInOrder.productPrice * productInOrder.count | currency}}</td>
+
+          <td>
+              <button class="btn btn-outline-danger btn-sm" (click)="remove(productInOrder)">
+                Remove
+              </button>
+          </td>
+
+      </tr>
+      </tbody>
+  </table>
+
+  <div *ngIf="productInOrders?.length > 0; else empty">
+      <div class="cart-total-box">
+        <h4>Total: <span>{{total | currency}}</span></h4>
+        <button (click)="checkout()" class="btn btn-warning btn-lg checkout-btn">
+          Checkout
+        </button>
+      </div>
+  </div>
+
+  <ng-template #empty>
+      <h4 class="empty-cart">🛍️ Your cart is empty. Let's go shopping!</h4>
+  </ng-template>
+</div>

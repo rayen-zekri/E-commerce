@@ -1,0 +1,104 @@
+<h1 class="text-center display-5 mb-4">
+  <i class="fas fa-user-edit"></i> Edit Profile
+</h1>
+
+<div class="profile-card shadow-lg p-4">
+
+  <form #form="ngForm" (ngSubmit)="onSubmit()">
+
+    <!-- EMAIL -->
+    <div class="mb-3">
+      <label class="form-label fw-bold"><i class="fas fa-envelope"></i> Email</label>
+      <input readonly [value]="user?.email"
+             type="email"
+             class="form-control form-control-lg"
+             disabled>
+    </div>
+
+    <!-- NAME -->
+    <div class="mb-3">
+      <label class="form-label fw-bold"><i class="fas fa-user"></i> Name</label>
+      <input [(ngModel)]="user.name"
+             type="text"
+             class="form-control form-control-lg"
+             id="name"
+             name="name"
+             placeholder="Your name"
+             required
+             minlength="3"
+             #name="ngModel"
+             autofocus>
+
+      <small class="text-danger"
+             *ngIf="name.invalid && (name.dirty || name.touched)">
+        <span *ngIf="name.errors?.required">Name is required.</span>
+        <span *ngIf="name.errors?.minlength">At least 3 characters.</span>
+      </small>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="mb-3">
+      <label class="form-label fw-bold"><i class="fas fa-lock"></i> Password</label>
+      <input [(ngModel)]="user.password"
+             type="password"
+             class="form-control form-control-lg"
+             id="password"
+             name="password"
+             placeholder="New password"
+             required
+             minlength="3"
+             #password="ngModel">
+
+      <small class="text-danger"
+             *ngIf="password.invalid && (password.dirty || password.touched)">
+        <span *ngIf="password.errors?.required">Password is required.</span>
+        <span *ngIf="password.errors?.minlength">Min 3 characters.</span>
+      </small>
+    </div>
+
+    <!-- PHONE -->
+    <div class="mb-3">
+      <label class="form-label fw-bold"><i class="fas fa-phone"></i> Phone</label>
+      <input [(ngModel)]="user.phone"
+             type="text"
+             class="form-control form-control-lg"
+             id="phone"
+             name="phone"
+             placeholder="Phone"
+             required
+             #phone="ngModel">
+
+      <small class="text-danger"
+             *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+        Phone is required.
+      </small>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="mb-4">
+      <label class="form-label fw-bold"><i class="fas fa-map-marker-alt"></i> Address</label>
+      <input [(ngModel)]="user.address"
+             type="text"
+             class="form-control form-control-lg"
+             id="address"
+             name="address"
+             placeholder="Address"
+             required
+             #address="ngModel">
+
+      <small class="text-danger"
+             *ngIf="address.invalid && (address.dirty || address.touched)">
+        Address is required.
+      </small>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <button type="submit"
+            class="btn btn-warning btn-lg w-100 shadow-sm"
+            [disabled]="!form.valid">
+      <i class="fas fa-save"></i> Update Profile
+    </button>
+
+  </form>
+
+</div>

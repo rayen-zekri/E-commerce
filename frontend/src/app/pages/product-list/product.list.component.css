@@ -1,0 +1,44 @@
+.product-list-container {
+  background: linear-gradient(145deg, #fffde7, #fff8e1);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 30px auto;
+  max-width: 1200px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.table th {
+  background-color: #ffecb3;
+}
+
+.add-form-container {
+  background: #fffbea;
+  border: 2px solid #ffeb3b;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-form-container form input,
+.add-form-container form select,
+.add-form-container form textarea {
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.add-form-container button {
+  border-radius: 10px;
+  font-weight: bold;
+}
+.input-group {
+  max-width: 400px;
+  margin-left: auto;
+}
+
+.input-group-text {
+  font-size: 1.2rem;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.4) !important;
+  border-color: #ffca2c !important;
+}

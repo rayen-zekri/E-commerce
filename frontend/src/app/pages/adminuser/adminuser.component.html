@@ -1,0 +1,51 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Gestion des utilisateurs</h2>
+
+  <div class="table-responsive shadow-sm rounded-3">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Email</th>
+          <th>Nom</th>
+          <th>Téléphone</th>
+          <th>Adresse</th>
+          <th>Status</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{ u.email }}</td>
+          <td>{{ u.name }}</td>
+          <td>{{ u.phone }}</td>
+          <td>{{ u.address }}</td>
+
+          <td>
+            <span 
+              class="badge px-3 py-2"
+              [ngClass]="u.active ? 'bg-success' : 'bg-danger'">
+              {{ u.active ? 'Actif' : 'Inactif' }}
+            </span>
+          </td>
+
+          <td class="text-center">
+            <button 
+              *ngIf="!u.active" 
+              class="btn btn-success btn-sm me-2 d-flex align-items-center"
+              (click)="activate(u)">
+              <i class="bi bi-check-circle me-1"></i> Activer
+            </button>
+
+            <button 
+              *ngIf="u.active" 
+              class="btn btn-warning btn-sm d-flex align-items-center"
+              (click)="deactivate(u)">
+              <i class="bi bi-x-circle me-1"></i> Désactiver
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

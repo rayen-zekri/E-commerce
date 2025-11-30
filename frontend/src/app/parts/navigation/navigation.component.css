@@ -1,0 +1,79 @@
+/* Navbar modern */
+.custom-navbar {
+    background: linear-gradient(90deg, #1f1f1f, #292929);
+    padding: 0.6rem 1.5rem;
+}
+
+/* Brand */
+.brand-logo {
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.2));
+}
+.brand-text {
+    font-weight: 600;
+    letter-spacing: .5px;
+}
+
+/* Link hover effect */
+.nav-link-custom {
+    position: relative;
+    font-weight: 500;
+    transition: 0.25s ease-in-out;
+}
+
+.nav-link-custom:hover {
+    color: #ffffff !important;
+    transform: translateY(-2px);
+}
+
+/* Underline animation */
+.nav-link-custom::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: #ffca28;
+    left: 0;
+    bottom: -3px;
+    transition: 0.3s;
+}
+
+.nav-link-custom:hover::after {
+    width: 100%;
+}
+
+/* Sign Up button */
+.btn-login {
+    padding: 6px 14px;
+    border-radius: 4px;
+    background: #ffca28;
+    color: black !important;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.btn-login:hover {
+    background: #ffb300;
+}
+
+.navbar-nav {
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  margin: 0 5px;
+}
+
+/* Ajustement bouton SignUp sur petit écran */
+.btn-login {
+  margin: 5px 0;
+  display: inline-block;
+}
+
+/* Optionnel: réduire le padding du navbar toggler sur petit écran */
+@media (max-width: 767px) {
+  .navbar-nav.ml-auto, .navbar-nav.mr-auto {
+    text-align: center;
+  }
+  .navbar-nav {
+    width: 100%;
+  }
+}

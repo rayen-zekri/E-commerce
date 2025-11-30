@@ -1,0 +1,52 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-back {
+  background: rgba(195, 152, 24, 0.15);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  
+  /* Important : force la hauteur minimale pour éviter que le footer chevauche la navbar */
+  min-height: calc(100vh - 70px - 60px); /* 70px = navbar, 60px = footer (à adapter selon ta taille réelle) */
+}
+
+.app-container {
+  padding: 20px;
+}
+
+.footer {
+  background-color: #1f1f1f;
+  color: #ddd;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.footer a.footer-social {
+  color: #ffca28;
+  margin-left: 8px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer a.footer-social:hover {
+  color: #ffffff;
+}
+
+@media (max-width: 767px) {
+  .footer .text-md-left,
+  .footer .text-md-right {
+    text-align: center !important;
+    display: block;
+  }
+  .social-icons {
+    margin-top: 5px;
+  }
+}
